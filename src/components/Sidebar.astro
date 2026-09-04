@@ -10,7 +10,7 @@ interface Props {
 const { page = "home" } = Astro.props;
 ---
 
-<aside class="sidebar" aria-label="Profile">
+<aside class:list={["sidebar", { "article-sidebar": page === "articles" || page === "article" }]} aria-label="Profile">
   <a class="portrait-link" href={withBase("/")} aria-label={`${profile.name}, homepage`}>
     <img src={withBase(profile.portrait)} alt={profile.portraitAlt} width="440" height="550" loading="eager" decoding="async" />
   </a>
@@ -46,6 +46,16 @@ const { page = "home" } = Astro.props;
     .sidebar :global(.sidebar-nav) { grid-column: 1 / -1; }
     img { width: 8.25rem; }
     .name { font-size: 1.375rem; }
+
+    .article-sidebar {
+      display: block;
+      padding-bottom: var(--space-5);
+    }
+
+    .article-sidebar .portrait-link,
+    .article-sidebar .identity {
+      display: none;
+    }
   }
 
   @media (max-width: 360px) {

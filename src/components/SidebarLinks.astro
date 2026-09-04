@@ -16,9 +16,9 @@ const externalLinks = [
 ].filter((link) => link.href);
 ---
 
-<nav class="sidebar-nav" aria-label="Primary navigation">
+<nav class:list={["sidebar-nav", { "article-mobile-nav": page === "articles" || page === "article" }]} aria-label="Primary navigation">
   <div class="primary-links">
-    {page !== "home" && <a href={withBase("/")}>Home <span aria-hidden="true">←</span></a>}
+    {page !== "home" && <a class="home-link" href={withBase("/")}>Home <span aria-hidden="true">←</span></a>}
     {page === "home" && <a href={withBase("/articles/")}>Articles <span aria-hidden="true">→</span></a>}
     {page === "article" && <a href={withBase("/articles/")}>Articles <span aria-hidden="true">←</span></a>}
     {profile.cv && (
@@ -58,5 +58,12 @@ const externalLinks = [
     .primary-links, .external-links { display: flex; flex-wrap: wrap; gap: var(--space-2) 1.125rem; }
     a { gap: var(--space-2); padding-block: 0; }
     .nav-label, .empty-note { width: 100%; }
+
+    .article-mobile-nav { margin-top: 0; }
+    .article-mobile-nav .primary-links > :not(.home-link),
+    .article-mobile-nav .external-links,
+    .article-mobile-nav > .empty-note {
+      display: none;
+    }
   }
 </style>
