@@ -130,9 +130,16 @@ const { title, description, publishedAt, updatedAt, tags = [], readingMinutes, h
   .article-back a:hover, .article-back a:focus-visible { text-decoration: underline; }
 
   @media (max-width: 760px) {
-    h1 { font-size: clamp(2rem, 9vw, 2.2rem); line-height: 1.16; }
-    .prose { font-size: 1.03125rem; line-height: 1.75; }
-    .prose :global(h2) { font-size: 1.375rem; }
+    h1 { font-size: clamp(2.125rem, 9vw, 2.35rem); line-height: 1.16; }
+    .dek { font-size: 1.125rem; }
+    .prose { font-size: 1.125rem; line-height: 1.75; }
+    .prose :global(h2) { font-size: 1.5rem; }
+    .prose :global(h3) { font-size: 1.25rem; }
+    .prose :global(h4) { font-size: 1.0625rem; }
     .prose :global(pre) { margin-inline: -0.5rem; padding-inline: var(--space-4); }
+    .prose :global(table) { font-size: 0.9375rem; }
+    .prose :global(figcaption) { font-size: 0.875rem; }
+    .prose :global(.footnotes) { font-size: 0.9375rem; }
+    .article-back a { font-size: 0.9375rem; }
   }
 </style>

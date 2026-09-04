@@ -24,4 +24,11 @@ const readingMinutes = estimateReadingTime(article.body ?? "");
   h2 a:hover, h2 a:focus-visible { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
   .description { color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.6; margin-top: 0.3125rem; }
   .meta { color: var(--color-text-tertiary); font-size: 0.8125rem; line-height: 1.5; margin-top: 0.4375rem; }
+
+  @media (max-width: 760px) {
+    .date,
+    .meta { font-size: 0.875rem; }
+    h2 { font-size: 1.1875rem; }
+    .description { font-size: 1.03125rem; }
+  }
 </style>

@@ -25,4 +25,9 @@ const items = headings.filter((heading) => heading.depth === 2 || heading.depth 
   li.nested { padding-left: var(--space-5); }
   a { color: var(--color-text-secondary); text-decoration: none; }
   a:hover, a:focus-visible { color: var(--text); text-decoration: underline; }
+
+  @media (max-width: 760px) {
+    .toc p { font-size: 0.8125rem; }
+    li { font-size: 0.9375rem; }
+  }
 </style>

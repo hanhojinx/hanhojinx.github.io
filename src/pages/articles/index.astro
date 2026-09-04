@@ -42,4 +42,10 @@ const groups = articles.reduce((years, article) => {
   .archive-header p { color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.65; margin: 0.625rem 0 0; max-width: 34rem; }
   .year-groups { display: grid; gap: 4.25rem; }
   .year-groups section > h2 { color: var(--color-text-secondary); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; line-height: 1.4; margin: 0 0 var(--space-6); }
+
+  @media (max-width: 760px) {
+    .archive-header h1 { font-size: 1.875rem; }
+    .archive-header p { font-size: 1rem; }
+    .year-groups section > h2 { font-size: 0.8125rem; }
+  }
 </style>
