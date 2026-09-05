@@ -87,11 +87,9 @@ export const projects: Project[] = [
 export const certifications: { name: string; description?: string; descriptionLang?: string }[] = [
   {
     name: "Information Processing Engineer Certificate",
-    description: "정보처리기사",
-    descriptionLang: "ko",
   },
   {
-    name: "TOEIC — 990",
+    name: "TOEIC (990)",
   },
 ];
 
