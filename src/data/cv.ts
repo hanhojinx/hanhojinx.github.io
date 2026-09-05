@@ -3,6 +3,7 @@ export type Link = { label: string; href: string };
 export type CVEntry = {
   period: string;
   organization: string;
+  organizationUrl?: string;
   detail: string;
   location?: string;
   description?: string;
@@ -43,6 +44,7 @@ export const education: CVEntry[] = [
   {
     period: "2022 — 2027",
     organization: "Korea University",
+    organizationUrl: "https://www.korea.ac.kr/sites/ko/index.do",
     detail: "Bachelor of Science in Computer Science and Engineering",
     location: "Seoul, Republic of Korea",
   },
