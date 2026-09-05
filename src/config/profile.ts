@@ -9,6 +9,7 @@ export const profile = {
   email: "seupjak@korea.ac.kr",
   github: "https://github.com/hanhojinx",
   instagram: "https://instagram.com/hxnhojin",
+  discord: "https://discord.com/users/487278496390053889",
   blog: "https://blog.naver.com/seupjak_",
   scholar: "",
   linkedin: "",
