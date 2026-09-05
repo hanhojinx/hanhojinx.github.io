@@ -17,7 +17,7 @@ const { page = "home" } = Astro.props;
   <div class="identity">
     <p class="name">{profile.name}</p>
     <p class="korean-name" lang="ko">{profile.koreanName}</p>
-    <p class="details">b. {profile.birthYear}<br />{profile.role}<br />{profile.location}</p>
+    <p class="details">({profile.birthYear}-)<br />{profile.role}<br />{profile.location}</p>
   </div>
   <SidebarLinks page={page} />
 </aside>

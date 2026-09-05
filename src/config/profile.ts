@@ -1,8 +1,8 @@
 export const profile = {
   name: "Hojin Han",
   koreanName: "한호진",
-  birthYear: "20XX",
-  role: "Security Researcher",
+  birthYear: "2004",
+  role: "CS Researcher",
   location: "Republic of Korea",
   portrait: "/profile.webp",
   portraitAlt: "Hojin Han standing by the Han River at night",

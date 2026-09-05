@@ -29,15 +29,15 @@ export type Project = {
 };
 
 export const about = [
-  "Hojin Han is a researcher working across security, artificial intelligence, and software systems. Replace this short biography with a concise account of current questions, methods, and affiliations.",
-  "This site separates a conventional academic record from longer research notes. All biographical and CV details below are deliberately marked as sample content until replaced.",
+  "Hojin is a researcher interested in the fields of cybersecurity, software systems, and CSAI. SHORT BIOGRAPHY with a concise account of current questions, methods, and AFFILIATIONS.",
+  "This site separates a conventional academic record from longer notes and articles written down. All biographical and CV details left blank below are deliberately left so until replaced.",
 ];
 
 export const researchInterests = [
-  "LLM provenance",
-  "AI security",
-  "Software security",
-  "OSINT / CTI",
+  "LLM Provenance & Fingerprinting",
+  "Security for AI & AI for Security",
+  "OSINT(Open-Source Intelligence)",
+  "Software Security",
 ];
 
 export const education: CVEntry[] = [
@@ -51,6 +51,7 @@ export const education: CVEntry[] = [
   {
     period: "2018 — 2021",
     organization: "Qingdao Galaxy International School",
+    organizationUrl: "https://www.linkedin.com/school/qdgis/",
     detail: "",
     location: "Shandong, China",
   },
@@ -79,10 +80,9 @@ export const publications: Publication[] = [
 
 export const projects: Project[] = [
   {
-    name: "Sample Research Project",
+    name: "LLM Integrated Web Hacking",
     description:
-      "A brief placeholder summary describing the research question, method, or engineering artifact.",
-    placeholder: true,
+      "An educational project exploring security risks in LLM-integrated web applications through a deliberately vulnerable chatbot. Demonstrates prompt-driven command execution, SQL injection, insecure output handling, and indirect prompt injection in a controlled environment.",
   },
 ];
 
