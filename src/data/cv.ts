@@ -23,14 +23,15 @@ export type Publication = {
 
 export type Project = {
   name: string;
+  url?: string;
   description: string;
   links?: Link[];
   placeholder?: boolean;
 };
 
 export const about = [
-  "Hojin is a researcher interested in the fields of cybersecurity, software systems, and CSAI. SHORT BIOGRAPHY with a concise account of current questions, methods, and AFFILIATIONS.",
-  "This site separates a conventional academic record from longer notes and articles written down. All biographical and CV details left blank below are deliberately left so until replaced.",
+  "Hojin is a researcher interested in the fields of cybersecurity, software systems, and CS & AI. Devoted to writing in both technical and literary registers, and takes equal pleasure in building new systems and in improving existing ones. Current work investigates how transparency in the open-source LLM ecosystem can be sustained through more efficient and less resource-intensive means. Correspondence of any kind — with or without a particular agenda — is welcome.",
+  "This page separates a conventional academic record from longer notes and articles written down, but currently not fully completed. All biographical and CV details left blank below are deliberately left so until replaced.",
 ];
 
 export const researchInterests = [
@@ -81,6 +82,7 @@ export const publications: Publication[] = [
 export const projects: Project[] = [
   {
     name: "LLM Integrated Web Hacking",
+    url: "https://strong-harmony-d66.notion.site/78da527bddf64175be0de6bf946c49ec?pvs=74",
     description:
       "An educational project exploring security risks in LLM-integrated web applications through a deliberately vulnerable chatbot. Demonstrates prompt-driven command execution, SQL injection, insecure output handling, and indirect prompt injection in a controlled environment.",
   },

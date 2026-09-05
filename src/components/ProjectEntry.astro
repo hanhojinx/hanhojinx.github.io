@@ -7,7 +7,9 @@ const { project } = Astro.props;
 
 <article class="project">
   {project.placeholder && <p class="sample-label">Sample content</p>}
-  <h3>{project.name}</h3>
+  <h3>{project.url ? (
+    <a class="project-title-link" href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
+  ) : project.name}</h3>
   <p class="description">{project.description}</p>
   {project.links && <p class="project-links">{project.links.map((link) => <a href={link.href}>{link.label} ↗</a>)}</p>}
 </article>
@@ -16,6 +18,8 @@ const { project } = Astro.props;
   p, h3 { margin: 0; }
   .project + .project { margin-top: 1.875rem; }
   h3 { font-size: 1rem; font-weight: 550; line-height: 1.45; }
+  .project-title-link { color: inherit; text-decoration: none; }
+  .project-title-link:hover, .project-title-link:focus-visible { text-decoration: underline; }
   .description { color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.65; margin-top: var(--space-1); max-width: 38rem; }
   .sample-label { color: var(--color-text-tertiary); font-size: 0.72rem; letter-spacing: 0.05em; margin-bottom: 0.4375rem; text-transform: uppercase; }
   .project-links { margin-top: var(--space-2); }
