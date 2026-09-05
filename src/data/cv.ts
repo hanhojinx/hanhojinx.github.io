@@ -56,12 +56,11 @@ export const education: CVEntry[] = [
 
 export const experience: CVEntry[] = [
   {
-    period: "20XX — Present",
-    organization: "Research group or organization",
-    detail: "Sample research or engineering role",
+    period: "2025 — Present",
+    organization: "Software Security and Privacy Lab",
+    detail: "Undergraduate RA",
     description:
       "Replace with one or two sentences describing the scope of the work and its research contribution.",
-    placeholder: true,
   },
 ];
 
