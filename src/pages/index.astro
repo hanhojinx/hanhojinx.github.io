@@ -4,7 +4,7 @@ import ProjectEntry from "../components/ProjectEntry.astro";
 import PublicationEntry from "../components/PublicationEntry.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import CVLayout from "../layouts/CVLayout.astro";
-import { about, awards, education, experience, projects, publications, researchInterests } from "../data/cv";
+import { about, awards, certifications, education, experience, projects, publications, researchInterests } from "../data/cv";
 ---
 
 <CVLayout page="home">
@@ -37,6 +37,19 @@ import { about, awards, education, experience, projects, publications, researchI
         <div class="entry-list">{projects.map((project) => <ProjectEntry project={project} />)}</div>
       </section>
     )}
+    {certifications.length > 0 && (
+      <section class="cv-section" aria-labelledby="certifications-heading">
+        <SectionHeading id="certifications-heading">Certifications</SectionHeading>
+        <div class="entry-list">
+          {certifications.map((certification) => (
+            <article class="certification">
+              <h3>{certification.name}</h3>
+              {certification.description && <p lang={certification.descriptionLang}>{certification.description}</p>}
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
     {awards.length > 0 && (
       <section class="cv-section" aria-labelledby="awards-heading">
         <SectionHeading id="awards-heading">Awards / Activities</SectionHeading>
@@ -54,6 +67,9 @@ import { about, awards, education, experience, projects, publications, researchI
   .interests { display: grid; gap: var(--space-2); list-style: none; margin: 0; padding: 0; }
   .interests li { font-size: 1rem; font-weight: 500; line-height: 1.55; }
   .entry-list { min-width: 0; }
+  .certification + .certification { margin-top: 1.875rem; }
+  .certification h3 { font-size: 1rem; font-weight: 550; line-height: 1.45; margin: 0; }
+  .certification p { color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.65; margin: var(--space-1) 0 0; }
 
   @media (max-width: 760px) {
     .cv-section + .cv-section { margin-top: 3.5rem; }
