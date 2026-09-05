@@ -46,6 +46,12 @@ export const education: CVEntry[] = [
     detail: "Bachelor of Science in Computer Science and Engineering",
     location: "Seoul, Republic of Korea",
   },
+  {
+    period: "2018 — 2021",
+    organization: "Qingdao Galaxy International School",
+    detail: "",
+    location: "Shandong, China",
+  },
 ];
 
 export const experience: CVEntry[] = [
