@@ -23,6 +23,8 @@ export type Publication = {
 
 export type Project = {
   name: string;
+  subtitle?: string;
+  subtitleLang?: string;
   url?: string;
   description: string;
   links?: Link[];
@@ -85,6 +87,13 @@ export const projects: Project[] = [
     url: "https://strong-harmony-d66.notion.site/78da527bddf64175be0de6bf946c49ec?pvs=74",
     description:
       "An educational project exploring security risks in LLM-integrated web applications through a deliberately vulnerable chatbot. Demonstrates prompt-driven command execution, SQL injection, insecure output handling, and indirect prompt injection in a controlled environment.",
+  },
+  {
+    name: "Directions for the Enactment of a Unified Artificial Intelligence Act: With a Focus on a Comparison with the European Union and the United States",
+    subtitle: "인공지능 단일법 제정의 방향성 - 유럽연합, 미국과의 비교를 중심으로-",
+    subtitleLang: "ko",
+    description:
+      "A comparative study of AI governance in the European Union and the United States, alongside Korean legislation and AI bills introduced in the 22nd National Assembly. Proposes directions for a unified AI act in Korea that balance innovation and risk mitigation through flexible regulation, regulatory sandboxes, alignment with international standards, and sustained collaboration between government and industry.",
   },
 ];
 
