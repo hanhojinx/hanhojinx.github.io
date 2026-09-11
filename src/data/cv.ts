@@ -90,6 +90,7 @@ export const projects: Project[] = [
   },
   {
     name: "Directions for the Enactment of a Unified Artificial Intelligence Act: With a Focus on a Comparison with the European Union and the United States",
+    url: "/unified-ai-act.pdf",
     subtitle: "인공지능 단일법 제정의 방향성 - 유럽연합, 미국과의 비교를 중심으로-",
     subtitleLang: "ko",
     description:
