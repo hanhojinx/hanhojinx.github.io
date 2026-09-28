@@ -28,12 +28,19 @@ assert.match(korean, /Shandong, China/);
 assert.match(korean, /작품/);
 assert.doesNotMatch(korean, /LLM 출처 추적 및 핑거프린팅|연구 관심 분야|서지 목록|컴퓨터학과 이학사 취득 예정/);
 assert.match(korean, /href="\/ko\/articles\/"/);
-assert.match(read("ko/articles/index.html"), /아직 등록된 한글 게시글이 없습니다/);
+assert.match(read("ko/articles/index.html"), /생각을 기록하는 방법 — 한글 서식 샘플/);
+assert.doesNotMatch(read("ko/articles/index.html"), /아직 등록된 한글 게시글이 없습니다/);
 assert.match(read("ko/articles/index.html"), /게시글 — 한호진/);
 assert.match(read("ko/articles/index.html"), /장르나 분류 상관없이 그때그때 쓰고 싶은 글들을 끄적입니다/);
 assert.doesNotMatch(read("ko/articles/index.html"), /A Note on Model Provenance/);
 assert.match(read("articles/index.html"), /A Note on Model Provenance/);
-assert.doesNotMatch(read("ko/rss.xml"), /<item>/);
+assert.match(read("ko/rss.xml"), /korean-format-sample/);
+assert.doesNotMatch(read("rss.xml"), /korean-format-sample/);
+assert.doesNotMatch(read("articles/index.html"), /korean-format-sample/);
+const sample = read("ko/articles/korean-format-sample/index.html");
+for (const pattern of [/<html lang="ko"/, /목차/, /읽는 시간/, /수정일/, /<table/, /astro-code/, /katex/, /<figure/, /<figcaption/, /footnotes/, /<h4/, /<del>/]) {
+  assert.match(sample, pattern);
+}
 assert.match(read("rss.xml"), /<item>/);
 assert.ok(existsSync(join(root, "unified-ai-act.pdf")));
 
