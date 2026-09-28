@@ -10,8 +10,8 @@
   --color-border-light: #e8e8e2;
   --color-code-bg: #efefeb;
 
-  --font-sans: Inter, Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
-  --font-serif: "Crimson Pro", serif;
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: "Literata", Georgia, serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
   --content-width: 65rem;
@@ -46,6 +46,11 @@
   --focus: currentColor;
 }
 
+:root[lang="ko"] {
+  /* Local-only until a licensed Sandoll webfont is supplied. */
+  --font-sans: "Sandoll GothicNeo1", "Sandoll 고딕Neo1", "Apple SD Gothic Neo", Pretendard, "Malgun Gothic", sans-serif;
+  --font-serif: "Iropke Batang", Batang, serif;
+}
 :root { color-scheme: light; }
 :root[data-theme="dark"] {
   color-scheme: dark;
