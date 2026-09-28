@@ -4,7 +4,10 @@ import ProjectEntry from "../components/ProjectEntry.astro";
 import PublicationEntry from "../components/PublicationEntry.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import CVLayout from "../layouts/CVLayout.astro";
-import { about, awards, certifications, education, experience, projects, publications, researchInterests } from "../data/cv";
+import * as englishCV from "../data/cv";
+import * as koreanCV from "../data/cv.ko";
+import { languageFromPath } from "../lib/i18n";
+const { about, awards, certifications, education, experience, projects, publications, researchInterests } = languageFromPath(Astro.url.pathname) === "ko" ? koreanCV : englishCV;
 ---
 
 <CVLayout page="home">

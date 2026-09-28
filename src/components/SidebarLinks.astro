@@ -1,6 +1,8 @@
 ---
 import { profile } from "../config/profile";
 import { withBase } from "../lib/format";
+import { languageFromPath, localizedPath } from "../lib/i18n";
+const lang = languageFromPath(Astro.url.pathname);
 
 interface Props {
   page?: "home" | "articles" | "article";
@@ -18,11 +20,11 @@ const externalLinks = [
 ].filter((link) => link.href);
 ---
 
-<nav class:list={["sidebar-nav", { "article-mobile-nav": page === "articles" || page === "article" }]} aria-label="Primary navigation">
+<nav class:list={["sidebar-nav", { "article-mobile-nav": page === "articles" || page === "article" }]} aria-label={lang === "ko" ? "주 메뉴" : "Primary navigation"}>
   <div class="primary-links">
-    {page !== "home" && <a class="home-link" href={withBase("/")}>Home <span aria-hidden="true">←</span></a>}
-    {page === "home" && <a href={withBase("/articles/")}>Articles <span aria-hidden="true">→</span></a>}
-    {page === "article" && <a href={withBase("/articles/")}>Articles <span aria-hidden="true">←</span></a>}
+    {page !== "home" && <a class="home-link" href={localizedPath("/", lang)}>{lang === "ko" ? "홈" : "Home"} <span aria-hidden="true">←</span></a>}
+    {page === "home" && <a href={localizedPath("/articles/", lang)}>{lang === "ko" ? "아티클" : "Articles"} <span aria-hidden="true">→</span></a>}
+    {page === "article" && <a href={localizedPath("/articles/", lang)}>{lang === "ko" ? "아티클" : "Articles"} <span aria-hidden="true">←</span></a>}
     {profile.cv && (
       <a href={withBase(profile.cv)} download>CV <span aria-hidden="true">↓</span></a>
     )}
@@ -30,7 +32,7 @@ const externalLinks = [
 
   {externalLinks.length > 0 ? (
     <div class="external-links">
-      <p class="nav-label">Links</p>
+      <p class="nav-label">{lang === "ko" ? "링크" : "Links"}</p>
       {externalLinks.map((link) => (
         <a href={link.href} target={link.label === "Email" ? undefined : "_blank"} rel={link.label === "Email" ? undefined : "noopener noreferrer"}>
           {link.label} <span aria-hidden="true">↗</span>

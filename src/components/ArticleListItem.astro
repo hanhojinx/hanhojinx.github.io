@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { estimateReadingTime, formatDate, withBase } from "../lib/format";
+import { estimateReadingTime, formatDate } from "../lib/format";
+import { localizedPath } from "../lib/i18n";
 
 interface Props { article: CollectionEntry<"articles"> }
 const { article } = Astro.props;
@@ -8,10 +9,10 @@ const readingMinutes = estimateReadingTime(article.body ?? "");
 ---
 
 <article class="article-list-item">
-  <p class="date">{formatDate(article.data.publishedAt)}</p>
-  <h2><a href={withBase(`/articles/${article.id}/`)}>{article.data.title}</a></h2>
+  <p class="date">{formatDate(article.data.publishedAt, article.data.language)}</p>
+  <h2><a href={localizedPath(`/articles/${article.id}/`, article.data.language)}>{article.data.title}</a></h2>
   <p class="description">{article.data.description}</p>
-  <p class="meta">{article.data.tags.join(" · ")} · {readingMinutes} min read</p>
+  <p class="meta">{[...article.data.tags, article.data.language === "ko" ? `읽는 시간 ${readingMinutes}분` : `${readingMinutes} min read`].join(" · ")}</p>
 </article>
 
 <style>

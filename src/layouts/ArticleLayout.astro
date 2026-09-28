@@ -4,8 +4,9 @@ import type { MarkdownHeading } from "astro";
 import ArticleMeta from "../components/ArticleMeta.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import { profile } from "../config/profile";
-import { withBase } from "../lib/format";
 import CVLayout from "./CVLayout.astro";
+import { languageFromPath, localizedPath } from "../lib/i18n";
+const lang = languageFromPath(Astro.url.pathname);
 
 interface Props {
   title: string;
@@ -37,8 +38,8 @@ const { title, description, publishedAt, updatedAt, tags = [], readingMinutes, h
     </header>
     <TableOfContents {headings} />
     <div class="prose"><slot /></div>
-    <nav class="article-back" aria-label="Article navigation">
-      <a href={withBase("/articles/")}>← Articles</a>
+    <nav class="article-back" aria-label={lang === "ko" ? "아티클 탐색" : "Article navigation"}>
+      <a href={localizedPath("/articles/", lang)}>← {lang === "ko" ? "아티클" : "Articles"}</a>
     </nav>
   </article>
 </CVLayout>

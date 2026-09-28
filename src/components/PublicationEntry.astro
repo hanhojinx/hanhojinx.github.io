@@ -1,5 +1,8 @@
 ---
 import type { Publication } from "../data/cv";
+import { languageFromPath } from "../lib/i18n";
+const lang = languageFromPath(Astro.url.pathname);
+const statusLabels = { Published: "출판", Accepted: "게재 승인", Preprint: "프리프린트", "Under Review": "심사 중" };
 
 interface Props { publication: Publication }
 const { publication } = Astro.props;
@@ -8,10 +11,10 @@ const { publication } = Astro.props;
 <article class="publication">
   <p class="year">{publication.year}</p>
   <div>
-    {publication.placeholder && <p class="sample-label">Sample content</p>}
+    {publication.placeholder && <p class="sample-label">{lang === "ko" ? "예시 항목" : "Sample content"}</p>}
     <h3>{publication.title}</h3>
     <p class="authors">{publication.authors}</p>
-    <p class="venue">{publication.venue}{publication.status ? ` · ${publication.status}` : ""}</p>
+    <p class="venue">{publication.venue}{publication.status ? ` · ${lang === "ko" ? statusLabels[publication.status] : publication.status}` : ""}</p>
     {publication.links && <p class="publication-links">{publication.links.map((link) => <a href={link.href}>{link.label}</a>)}</p>}
   </div>
 </article>

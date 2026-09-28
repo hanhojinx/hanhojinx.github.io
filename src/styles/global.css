@@ -46,6 +46,24 @@
   --focus: currentColor;
 }
 
+:root { color-scheme: light; }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #181817;
+  --color-surface: #181817;
+  --color-text: #e9e9e3;
+  --color-text-secondary: #b5b5ad;
+  --color-text-tertiary: #999990;
+  --color-link: #deded7;
+  --color-link-hover: #ffffff;
+  --color-border: #44443e;
+  --color-border-light: #33332f;
+  --color-code-bg: #242421;
+}
+:root[data-theme="dark"] .astro-code,
+:root[data-theme="dark"] .astro-code span {
+  color: var(--shiki-dark) !important;
+}
 * { box-sizing: border-box; }
 
 html {

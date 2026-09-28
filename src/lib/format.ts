@@ -1,5 +1,5 @@
-export function formatDate(date: Date): string {
-  return new Intl.DateTimeFormat("en-US", {
+export function formatDate(date: Date, language = "en"): string {
+  return new Intl.DateTimeFormat(language === "ko" ? "ko-KR" : "en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -22,4 +22,3 @@ export function withBase(path: string): string {
   const cleanPath = path.replace(/^\/+/, "");
   return `${base}${cleanPath}`.replace(/\/{2,}/g, "/");
 }
-

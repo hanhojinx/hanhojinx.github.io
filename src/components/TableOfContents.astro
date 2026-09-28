@@ -1,5 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro";
+import { languageFromPath } from "../lib/i18n";
 
 interface Props { headings: MarkdownHeading[] }
 const { headings } = Astro.props;
@@ -8,7 +9,7 @@ const items = headings.filter((heading) => heading.depth === 2 || heading.depth 
 
 {items.length >= 3 && (
   <nav class="toc" aria-labelledby="toc-title">
-    <p id="toc-title">Contents</p>
+    <p id="toc-title">{languageFromPath(Astro.url.pathname) === "ko" ? "목차" : "Contents"}</p>
     <ol>
       {items.map((heading) => (
         <li class:list={{ nested: heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>

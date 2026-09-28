@@ -3,6 +3,7 @@ import "../styles/global.css";
 import { profile } from "../config/profile";
 import { siteConfig } from "../config/site";
 import { withBase } from "../lib/format";
+import { languageFromPath, localizedPath } from "../lib/i18n";
 
 interface Props {
   title?: string;
@@ -12,15 +13,21 @@ interface Props {
   publishedAt?: Date;
 }
 
-const { title = siteConfig.title, description = siteConfig.description, canonicalPath = Astro.url.pathname, type = "website", publishedAt } = Astro.props;
+const lang = languageFromPath(Astro.url.pathname);
+const { title = lang === "ko" ? "한호진 — CS 연구자" : siteConfig.title, description = lang === "ko" ? "보안, 인공지능, 소프트웨어 시스템에 관한 연구 이력과 기록." : siteConfig.description, canonicalPath = Astro.url.pathname, type = "website", publishedAt } = Astro.props;
 const canonicalURL = new URL(canonicalPath, siteConfig.siteUrl);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <script is:inline>
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem("color-theme") === "dark" ? "dark" : "light";
+      } catch { document.documentElement.dataset.theme = "light"; }
+    </script>
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,10 +37,14 @@ const canonicalURL = new URL(canonicalPath, siteConfig.siteUrl);
       href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
     />
     <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
-    <link rel="alternate" type="application/rss+xml" title={`${profile.name} articles`} href={withBase("/rss.xml")} />
+    <link rel="alternate" type="application/rss+xml" title={`${profile.name} articles`} href={localizedPath("/rss.xml", lang)} />
     <link rel="canonical" href={canonicalURL} />
+    {type !== "article" && <>
+      <link rel="alternate" hreflang="en" href={new URL(localizedPath(Astro.url.pathname, "en"), siteConfig.siteUrl)} />
+      <link rel="alternate" hreflang="ko" href={new URL(localizedPath(Astro.url.pathname, "ko"), siteConfig.siteUrl)} />
+    </>}
     <meta property="og:type" content={type} />
-    <meta property="og:locale" content={siteConfig.locale} />
+    <meta property="og:locale" content={lang === "ko" ? "ko_KR" : siteConfig.locale} />
     <meta property="og:site_name" content={profile.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

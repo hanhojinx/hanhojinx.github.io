@@ -2,6 +2,8 @@
 import { profile } from "../config/profile";
 import { withBase } from "../lib/format";
 import SidebarLinks from "./SidebarLinks.astro";
+import { languageFromPath, localizedPath } from "../lib/i18n";
+const lang = languageFromPath(Astro.url.pathname);
 
 interface Props {
   page?: "home" | "articles" | "article";
@@ -10,14 +12,14 @@ interface Props {
 const { page = "home" } = Astro.props;
 ---
 
-<aside class:list={["sidebar", { "article-sidebar": page === "articles" || page === "article" }]} aria-label="Profile">
-  <a class="portrait-link" href={withBase("/")} aria-label={`${profile.name}, homepage`}>
-    <img src={withBase(profile.portrait)} alt={profile.portraitAlt} width="440" height="550" loading="eager" decoding="async" />
+<aside class:list={["sidebar", { "article-sidebar": page === "articles" || page === "article" }]} aria-label={lang === "ko" ? "프로필" : "Profile"}>
+  <a class="portrait-link" href={localizedPath("/", lang)} aria-label={lang === "ko" ? "한호진, 홈" : `${profile.name}, homepage`}>
+    <img src={withBase(profile.portrait)} alt={lang === "ko" ? "밤의 한강변에 서 있는 한호진" : profile.portraitAlt} width="440" height="550" loading="eager" decoding="async" />
   </a>
   <div class="identity">
-    <p class="name">{profile.name}</p>
-    <p class="korean-name" lang="ko">{profile.koreanName}</p>
-    <p class="details">({profile.birthYear}-)<br />{profile.role}<br />{profile.location}</p>
+    <p class="name">{lang === "ko" ? profile.koreanName : profile.name}</p>
+    <p class="korean-name" lang={lang === "ko" ? "en" : "ko"}>{lang === "ko" ? profile.name : profile.koreanName}</p>
+    <p class="details">({profile.birthYear}-)<br />{lang === "ko" ? "CS 연구자" : profile.role}<br />{lang === "ko" ? "대한민국" : profile.location}</p>
   </div>
   <SidebarLinks page={page} />
 </aside>

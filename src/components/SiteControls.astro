@@ -1,0 +1,47 @@
+---
+import { languageFromPath, languageSwitchPath } from "../lib/i18n";
+const lang = languageFromPath(Astro.url.pathname);
+---
+<div class="site-controls">
+  <div class="control-group theme-controls" role="group" aria-label={lang === "ko" ? "화면 테마" : "Color theme"}>
+    <button type="button" data-theme-choice="light" aria-pressed="true">WHITE</button>
+    <button type="button" data-theme-choice="dark" aria-pressed="false">BLACK</button>
+  </div>
+  <nav class="control-group" aria-label={lang === "ko" ? "언어 선택" : "Language"}>
+    <a href={languageSwitchPath(Astro.url.pathname, "ko")} lang="ko" aria-label="한국어" aria-current={lang === "ko" ? "page" : undefined}>KOR</a>
+    <a href={languageSwitchPath(Astro.url.pathname, "en")} lang="en" aria-label="English" aria-current={lang === "en" ? "page" : undefined}>ENG</a>
+  </nav>
+</div>
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-theme-choice]");
+  function updateButtons() {
+    const theme = document.documentElement.dataset.theme || "light";
+    buttons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.themeChoice === theme)));
+  }
+  buttons.forEach(button => button.addEventListener("click", () => {
+    const theme = button.dataset.themeChoice === "dark" ? "dark" : "light";
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem("color-theme", theme); } catch {}
+    updateButtons();
+  }));
+  window.addEventListener("pageshow", updateButtons);
+  window.addEventListener("storage", event => {
+    if (event.key === "color-theme") {
+      document.documentElement.dataset.theme = event.newValue === "dark" ? "dark" : "light";
+      updateButtons();
+    }
+  });
+  updateButtons();
+</script>
+<style>
+  .site-controls { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.75rem; margin-inline: auto; padding-top: 1.25rem; width: min(calc(100% - 3rem), var(--content-width)); }
+  .control-group { display: flex; border: 1px solid var(--color-border); border-radius: 3px; padding: 2px; gap: 2px; }
+  button, a { background: transparent; border: 0; border-radius: 1px; color: var(--color-text-secondary); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 550; letter-spacing: 0.055em; line-height: 1; min-height: 2rem; padding: 0.5rem 0.625rem; text-decoration: none; }
+  button:hover, a:hover { color: var(--color-text); }
+  button[aria-pressed="true"], a[aria-current="page"] { background: var(--color-text); color: var(--color-bg); }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; }
+  @media (max-width: 760px) {
+    .site-controls { width: min(calc(100% - 2.5rem), 42.5rem); padding-top: 0.75rem; }
+    button, a { min-height: 2.5rem; }
+  }
+</style>
