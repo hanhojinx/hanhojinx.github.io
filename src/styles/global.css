@@ -47,8 +47,7 @@
 }
 
 :root[lang="ko"] {
-  /* Local-only until a licensed Sandoll webfont is supplied. */
-  --font-sans: "Sandoll GothicNeo1", "Sandoll 고딕Neo1", "Apple SD Gothic Neo", Pretendard, "Malgun Gothic", sans-serif;
+  --font-sans: "Noto Sans KR", "Malgun Gothic", sans-serif;
   --font-serif: "Iropke Batang", Batang, serif;
 }
 :root { color-scheme: light; }
