@@ -18,7 +18,15 @@ assert.match(read("ko/articles/index.html"), /family=Noto\+Sans\+KR/);
 assert.doesNotMatch(english, /family=Noto\+Sans\+KR/);
 assert.ok(existsSync(join(root, "fonts/iropke-batang/IropkeBatangM.woff")));
 assert.match(english, /Hojin is a researcher/);
-assert.match(korean, /한호진은 사이버보안/);
+assert.match(korean, /정보보안, 소프트웨어보안, 컴퓨터과학과 인공지능 등에 관심이 있습니다/);
+assert.match(korean, /관심분야/);
+assert.match(korean, /AI for Security &amp; Security for AI/);
+assert.match(korean, /컴퓨터 및 소프트웨어보안/);
+assert.match(korean, /정보대학 컴퓨터학과/);
+assert.match(korean, /QDGIS/);
+assert.match(korean, /Shandong, China/);
+assert.match(korean, /작품/);
+assert.doesNotMatch(korean, /LLM 출처 추적 및 핑거프린팅|연구 관심 분야|서지 목록|컴퓨터학과 이학사 취득 예정/);
 assert.match(korean, /href="\/ko\/articles\/"/);
 assert.match(read("ko/articles/index.html"), /아직 등록된 한글 아티클이 없습니다/);
 assert.doesNotMatch(read("ko/articles/index.html"), /A Note on Model Provenance/);
@@ -44,8 +52,9 @@ function verifyLinks(directory) {
     if (entry.isDirectory()) verifyLinks(path);
     else if (entry.name.endsWith(".html")) {
       const html = readFileSync(path, "utf8");
-      assert.match(html, /data-theme-choice="light"/);
-      assert.match(html, /data-theme-choice="dark"/);
+      assert.match(html, /role="switch"/);
+      assert.match(html, /class="toggle-track"/);
+      assert.match(html, /language-toggle/);
       for (const match of html.matchAll(/(?:href|src)="(\/[^"]*)"/g)) {
         const link = decodeURI(match[1].split(/[?#]/)[0]);
         if (link.startsWith("//")) continue;

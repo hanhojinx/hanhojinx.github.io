@@ -1,17 +1,16 @@
 import * as en from "./cv";
 export const about = [
-  "한호진은 사이버보안, 소프트웨어 시스템, 컴퓨터과학과 인공지능에 관심을 두고 연구합니다. 기술적인 글과 문학적인 글을 모두 즐겨 쓰며, 새로운 시스템을 만드는 일과 기존 시스템을 개선하는 일에서 동등한 즐거움을 느낍니다. 현재는 보다 효율적이고 자원을 적게 사용하는 방식으로 오픈소스 LLM 생태계의 투명성을 유지할 수 있는 방법을 탐구하고 있습니다. 특별한 용건이 있든 없든, 어떤 연락이든 환영합니다.",
-  "이 페이지는 학술 이력과 긴 단상 및 아티클을 구분해 담고 있으며, 아직 완전히 완성되지는 않았습니다. 아래 소개 및 이력에서 비워 둔 부분은 새로운 내용으로 채우기 전까지 의도적으로 남겨 둔 것입니다.",
+  "정보보안, 소프트웨어보안, 컴퓨터과학과 인공지능 등에 관심이 있습니다. 다양한 장르의 글을 즐겨 쓰며, 새로운 시스템을 창작하는 일과 기존 시스템을 개선하는 일 모두에서 즐거움을 느낍니다. 연락은 언제나 환영이니 사이드바의 연락처 참고 부탁드립니다.",
+  "해당 웹사이트는 CV 페이지와 아티클 페이지를 구분해두고 있으며, 아직 완전히 완성되지는 않은 상태라 미흡한 부분이 많습니다. 아래의 소개/이력에서 비워둔 부분은 의도적으로 비워져 있는 것이니 참고하여 봐주시면 감사하겠습니다.",
 ];
 export const researchInterests = [
-  "LLM 출처 추적 및 핑거프린팅",
-  "AI를 위한 보안 및 보안을 위한 AI",
-  "공개출처정보(OSINT)",
-  "소프트웨어 보안",
+  "AI for Security & Security for AI",
+  "OSINT",
+  "컴퓨터 및 소프트웨어보안",
 ];
 export const education: en.CVEntry[] = [
-  { ...en.education[0], organization: "고려대학교", detail: "컴퓨터학과 이학사 취득 예정", location: "대한민국 서울" },
-  { ...en.education[1], organization: "칭다오 갤럭시 국제학교", location: "중국 산둥성" },
+  { ...en.education[0], organization: "고려대학교", detail: "정보대학 컴퓨터학과", location: "대한민국 서울" },
+  { ...en.education[1], organization: "QDGIS", location: "Shandong, China" },
 ];
 export const experience: en.CVEntry[] = [
   { ...en.experience[0], period: "2025 — 현재", organization: "소프트웨어 보안 및 프라이버시 연구실", detail: "학부 연구생", description: "업무 범위와 연구 기여를 설명하는 한두 문장으로 교체할 예정입니다." },

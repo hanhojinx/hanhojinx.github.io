@@ -7,9 +7,9 @@ interface Props {
 
 const { id, as: Tag = "h2" }: Props = Astro.props;
 const labels: Record<string, string> = {
-  "about-heading": "소개", "interests-heading": "연구 관심 분야", "education-heading": "학력",
+  "about-heading": "소개", "interests-heading": "관심분야", "education-heading": "학력",
   "experience-heading": "경력", "publications-heading": "논문", "projects-heading": "프로젝트",
-  "certifications-heading": "자격 및 어학", "bibliography-heading": "서지 목록", "awards-heading": "수상 및 활동",
+  "certifications-heading": "자격 및 어학", "bibliography-heading": "작품", "awards-heading": "수상 및 활동",
 };
 const label = languageFromPath(Astro.url.pathname) === "ko" && id ? labels[id] : undefined;
 ---
