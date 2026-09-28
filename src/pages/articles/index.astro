@@ -5,6 +5,7 @@ import { profile } from "../../config/profile";
 import CVLayout from "../../layouts/CVLayout.astro";
 import { languageFromPath } from "../../lib/i18n";
 const lang = languageFromPath(Astro.url.pathname);
+const koreanDescription = "장르나 분류 상관없이 그때그때 쓰고 싶은 글들을 끄적입니다. 어느날 걷다가 문득 떠오른 생각들과 긴 시간을 연구한 분야에 관한 글, 의식의 흐름을 따라가다가 나온 아이디어들 모두가 존재하는 공간";
 
 const articles = (await getCollection("articles", ({ data }) => !data.draft && data.language === lang))
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
@@ -20,16 +21,16 @@ const groups = articles.reduce((years, article) => {
 
 <CVLayout
   page="articles"
-  title={lang === "ko" ? "아티클 — 한호진" : `Articles — ${profile.name}`}
-  description={lang === "ko" ? "보안, 인공지능, 출처 추적, 소프트웨어 시스템에 관한 연구 노트와 에세이." : "Research notes and essays on security, AI, provenance, and software systems."}
+  title={lang === "ko" ? "게시글 — 한호진" : `Articles — ${profile.name}`}
+  description={lang === "ko" ? koreanDescription : "Research notes and essays on security, AI, provenance, and software systems."}
 >
   <header class="archive-header">
-    <h1>{lang === "ko" ? "아티클" : "Articles"}</h1>
-    <p>{lang === "ko" ? "보안, 인공지능, 출처 추적, 소프트웨어 시스템에 관한 연구 노트와 에세이." : "Research notes and essays on security, artificial intelligence, provenance, and software systems."}</p>
+    <h1>{lang === "ko" ? "게시글" : "Articles"}</h1>
+    <p>{lang === "ko" ? koreanDescription : "Research notes and essays on security, artificial intelligence, provenance, and software systems."}</p>
   </header>
 
   <div class="year-groups">
-    {articles.length === 0 && <p class="empty-state">{lang === "ko" ? "아직 등록된 한글 아티클이 없습니다." : "No English articles have been published yet."}</p>}
+    {articles.length === 0 && <p class="empty-state">{lang === "ko" ? "아직 등록된 한글 게시글이 없습니다." : "No English articles have been published yet."}</p>}
     {Array.from(groups).map(([year, yearArticles]) => (
       <section aria-labelledby={`year-${year}`}>
         <h2 id={`year-${year}`}>{year}</h2>
