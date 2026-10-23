@@ -61,8 +61,10 @@ function verifyLinks(directory) {
     if (entry.isDirectory()) verifyLinks(path);
     else if (entry.name.endsWith(".html")) {
       const html = readFileSync(path, "utf8");
-      assert.match(html, /role="switch"/);
-      assert.match(html, /class="toggle-track"/);
+      assert.match(html, /round-control theme-toggle/);
+      assert.match(html, /moon-icon/);
+      assert.match(html, /sun-icon/);
+      assert.doesNotMatch(html, /toggle-track|toggle-thumb|role="switch"/);
       assert.match(html, /language-toggle/);
       for (const match of html.matchAll(/(?:href|src)="(\/[^"]*)"/g)) {
         const link = decodeURI(match[1].split(/[?#]/)[0]);
@@ -74,4 +76,36 @@ function verifyLinks(directory) {
   }
 }
 verifyLinks(root);
+// Exercise the control's actual event handlers, including unavailable storage.
+const controlSource = readFileSync("src/components/SiteControls.astro", "utf8");
+const controlScript = controlSource.match(/<script>([\s\S]*?)<\/script>/)[1].replace("<HTMLButtonElement>", "");
+for (const lang of ["ko", "en"]) {
+  for (const storageBlocked of [false, true]) {
+    const attributes = {};
+    const events = {};
+    let click;
+    let stored;
+    const element = {
+      setAttribute: (key, value) => { attributes[key] = value; },
+      addEventListener: (_, handler) => { click = handler; },
+    };
+    const document = { documentElement: { lang, dataset: { theme: "light" } }, querySelector: () => element };
+    vm.runInNewContext(controlScript, {
+      document,
+      window: { addEventListener: (key, handler) => { events[key] = handler; } },
+      localStorage: { setItem: (_, value) => { if (storageBlocked) throw Error("blocked"); stored = value; } },
+    });
+    click();
+    assert.equal(document.documentElement.dataset.theme, "dark");
+    assert.equal(attributes["aria-label"], lang === "ko" ? "라이트 모드로 전환" : "Switch to light mode");
+    assert.equal(attributes.title, attributes["aria-label"]);
+    if (!storageBlocked) assert.equal(stored, "dark");
+    click();
+    assert.equal(document.documentElement.dataset.theme, "light");
+    events.storage({ key: "color-theme", newValue: "dark" });
+    assert.equal(document.documentElement.dataset.theme, "dark");
+    events.storage({ key: null, newValue: null });
+    assert.equal(document.documentElement.dataset.theme, "light");
+  }
+}
 console.log("PASS: locales, archives, RSS isolation, all local links, theme defaults and blocked storage");
