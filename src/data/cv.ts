@@ -108,3 +108,39 @@ export const certifications: { name: string; description?: string; descriptionLa
 ];
 
 export const awards: CVEntry[] = [];
+
+export type CommunityEntry = {
+  name: string;
+  period: string;
+  description?: string;
+  roles?: { name: string; period: string; description: string }[];
+};
+
+export const community: CommunityEntry[] = [
+  {
+    name: "Perplexity Campus Partner",
+    period: "2025 — 2026",
+    description: "Promoted Perplexity’s Comet browser and supported new-user acquisition through campus outreach at Korea University. Connected with student entrepreneurship societies, the Student Success Center, and computing clubs to introduce Comet to student communities.",
+  },
+  {
+    name: "KITRI WhiteHat School 2nd",
+    period: "Mar 2024 — Sep 2024",
+    description: "Completed cybersecurity training in the second cohort of KITRI WhiteHat School and contributed to the LLM Integrated Web Hacking project. Applied security concepts to a deliberately vulnerable LLM-integrated web application, exploring prompt-driven command execution, SQL injection, insecure output handling, and indirect prompt injection in a controlled environment.",
+  },
+  {
+    name: "KUCC",
+    period: "2023 — 2026",
+    roles: [
+      {
+        name: "Web Hacking Session Mentor",
+        period: "2026",
+        description: "Guided mentees through the web security testing workflow, combining foundational concepts such as hashing and encryption with hands-on exercises in web crawling, automation, and SQL injection. Used step-by-step walkthroughs to connect security principles with practical testing techniques.",
+      },
+      {
+        name: "MIT xPro BlendED Communication Leader",
+        period: "2024 — 2026",
+        description: "Served as the communication liaison between KUCC and the MIT xPro BlendED team. Coordinated events and networking opportunities, including an AI Agent Conference involving student communities such as Yonsei University’s YCC, and promoted online and in-person talks and sessions.",
+      },
+    ],
+  },
+];

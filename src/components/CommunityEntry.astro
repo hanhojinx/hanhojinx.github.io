@@ -1,0 +1,32 @@
+---
+import type { CommunityEntry } from "../data/cv";
+interface Props { entry: CommunityEntry }
+const { entry } = Astro.props;
+---
+<article class="community-entry">
+  <p class="period">{entry.period}</p>
+  <h3>{entry.name}</h3>
+  {entry.description && <p class="description">{entry.description}</p>}
+  {entry.roles && (
+    <div class="roles">
+      {entry.roles.map((role) => (
+        <div class="role">
+          <p class="period">{role.period}</p>
+          <h4>{role.name}</h4>
+          <p class="description">{role.description}</p>
+        </div>
+      ))}
+    </div>
+  )}
+</article>
+<style>
+  .community-entry { min-width: 0; }
+  .community-entry + .community-entry { margin-top: 2.125rem; }
+  p, h3, h4 { margin: 0; }
+  .period { color: var(--color-text-tertiary); font-size: 0.8125rem; line-height: 1.5; margin-bottom: 0.4375rem; }
+  h3 { font-size: 1rem; font-weight: 550; line-height: 1.45; }
+  h4 { font-size: 0.9375rem; font-weight: 550; line-height: 1.5; }
+  .description { color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.65; margin-top: 0.5625rem; max-width: 38rem; }
+  .roles { border-left: 1px solid var(--color-border-light); margin-top: 1.125rem; padding-left: 1.125rem; }
+  .role + .role { margin-top: 1.5rem; }
+</style>

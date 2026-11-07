@@ -1,11 +1,12 @@
 ---
 import CVEntry from "../components/CVEntry.astro";
+import CommunityEntry from "../components/CommunityEntry.astro";
 import ProjectEntry from "../components/ProjectEntry.astro";
 import PublicationEntry from "../components/PublicationEntry.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import CVLayout from "../layouts/CVLayout.astro";
 import * as englishCV from "../data/cv";
-const { about, awards, certifications, education, experience, projects, publications, researchInterests } = englishCV;
+const { about, awards, certifications, community, education, experience, projects, publications, researchInterests } = englishCV;
 ---
 
 <CVLayout page="home">
@@ -26,16 +27,24 @@ const { about, awards, certifications, education, experience, projects, publicat
       <SectionHeading id="experience-heading">Experience</SectionHeading>
       <div class="entry-list">{experience.map((entry) => <CVEntry entry={entry} />)}</div>
     </section>
+    {/* Temporarily hidden; retain the section and data for later use.
     {publications.length > 0 && (
       <section class="cv-section" aria-labelledby="publications-heading">
         <SectionHeading id="publications-heading">Publications</SectionHeading>
         <div class="entry-list">{publications.map((publication) => <PublicationEntry publication={publication} />)}</div>
       </section>
     )}
+    */}
     {projects.length > 0 && (
       <section class="cv-section" aria-labelledby="projects-heading">
         <SectionHeading id="projects-heading">Projects</SectionHeading>
         <div class="entry-list">{projects.map((project) => <ProjectEntry project={project} />)}</div>
+      </section>
+    )}
+    {community.length > 0 && (
+      <section class="cv-section" aria-labelledby="community-heading">
+        <SectionHeading id="community-heading">Community</SectionHeading>
+        <div class="entry-list">{community.map((entry) => <CommunityEntry entry={entry} />)}</div>
       </section>
     )}
     {certifications.length > 0 && (
