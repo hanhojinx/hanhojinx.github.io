@@ -1,9 +1,5 @@
 ---
-import { languageFromPath, languageSwitchPath } from "../lib/i18n";
-const lang = languageFromPath(Astro.url.pathname);
-const nextLang = lang === "ko" ? "en" : "ko";
-const themeLabel = lang === "ko" ? "다크 모드로 전환" : "Switch to dark mode";
-const languageLabel = lang === "ko" ? "영어 버전으로 전환" : "Switch to Korean";
+const themeLabel = "Switch to dark mode";
 ---
 <div class="site-controls">
   <button class="round-control theme-toggle" type="button" aria-label={themeLabel} title={themeLabel}>
@@ -15,11 +11,6 @@ const languageLabel = lang === "ko" ? "영어 버전으로 전환" : "Switch to 
       <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
     </svg>
   </button>
-  <a class="round-control language-toggle"
-    href={languageSwitchPath(Astro.url.pathname, nextLang)}
-    aria-label={languageLabel} title={languageLabel} hreflang={nextLang}>
-    <span aria-hidden="true">{nextLang === "ko" ? "KO" : "EN"}</span>
-  </a>
 </div>
 <script>
   const toggle = document.querySelector<HTMLButtonElement>(".theme-toggle");

@@ -1,8 +1,8 @@
 ---
+import { withBase } from "../lib/format";
 import BaseLayout from "./BaseLayout.astro";
 import Sidebar from "../components/Sidebar.astro";
 import SiteControls from "../components/SiteControls.astro";
-import { languageFromPath, localizedPath } from "../lib/i18n";
 import { profile } from "../config/profile";
 
 interface Props {
@@ -29,7 +29,7 @@ const { page = "home", ...meta } = Astro.props;
     </div>
     <footer class="site-footer">
       <span>© {new Date().getFullYear()} {profile.name}</span>
-      <a href={localizedPath("/rss.xml", languageFromPath(Astro.url.pathname))}>RSS</a>
+      <a href={withBase("/rss.xml")}>RSS</a>
     </footer>
   </div>
 </BaseLayout>

@@ -5,9 +5,7 @@ import PublicationEntry from "../components/PublicationEntry.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import CVLayout from "../layouts/CVLayout.astro";
 import * as englishCV from "../data/cv";
-import * as koreanCV from "../data/cv.ko";
-import { languageFromPath } from "../lib/i18n";
-const { about, awards, certifications, education, experience, projects, publications, researchInterests } = languageFromPath(Astro.url.pathname) === "ko" ? koreanCV : englishCV;
+const { about, awards, certifications, education, experience, projects, publications, researchInterests } = englishCV;
 ---
 
 <CVLayout page="home">

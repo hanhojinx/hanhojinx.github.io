@@ -5,7 +5,7 @@ import { siteConfig } from "../config/site";
 import { basePath } from "../../site.config.mjs";
 
 export async function GET(context: { site?: URL }) {
-  const articles = (await getCollection("articles", ({ data }) => !data.draft && data.language === "en"))
+  const articles = (await getCollection("articles", ({ data }) => !data.draft))
     .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 
   return rss({
