@@ -65,8 +65,6 @@ export const experience: CVEntry[] = [
     period: "2025 — Present",
     organization: "Software Security and Privacy Lab",
     detail: "Undergraduate RA",
-    description:
-      "Replace with one or two sentences describing the scope of the work and its research contribution.",
   },
 ];
 

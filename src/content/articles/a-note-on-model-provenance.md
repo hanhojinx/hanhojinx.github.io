@@ -5,7 +5,7 @@ publishedAt: 2026-09-04
 tags:
   - AI Security
   - Provenance
-draft: false
+draft: true
 featured: true
 ---
 

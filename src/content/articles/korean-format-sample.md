@@ -8,7 +8,7 @@ tags:
   - 샘플
   - 글쓰기
   - 연구 노트
-draft: false
+draft: true
 featured: false
 ---
 

@@ -19,11 +19,15 @@ assert.match(english, /family=Literata/);
 assert.match(english, /family=Noto\+Sans\+KR/);
 assert.match(english, /\/fonts\/iropke-batang\/font.css/);
 assert.ok(!existsSync(join(root, "ko")), "KO routes must not be generated");
-assert.match(read("articles/index.html"), /korean-format-sample/);
-assert.match(read("articles/index.html"), /A Note on Model Provenance/);
-assert.match(read("rss.xml"), /korean-format-sample/);
-const sample = read("articles/korean-format-sample/index.html");
-for (const pattern of [/lang="ko"/, /Contents/, /min read/, /Updated/, /<table/, /astro-code/, /katex/, /<figure/, /<figcaption/, /footnotes/]) assert.match(sample, pattern);
+assert.doesNotMatch(english, /Replace with one or two sentences/);
+assert.match(english, /Software Security and Privacy Lab/);
+assert.match(read("articles/index.html"), /Research notes, essays, memoirs, or simply just my thoughts/);
+assert.match(read("articles/index.html"), /No articles have been published yet/);
+for (const slug of ["korean-format-sample", "a-note-on-model-provenance", "understanding-open-source-intelligence"]) {
+  assert.match(readFileSync(`src/content/articles/${slug}.md`, "utf8"), /draft: true/);
+  assert.ok(!existsSync(join(root, "articles", slug)), "Draft detail must not be generated");
+  for (const file of ["articles/index.html", "rss.xml", "sitemap-0.xml"]) assert.ok(!read(file).includes(slug), `Draft leaked in ${file}`);
+}
 const css = readFileSync("src/styles/global.css", "utf8");
 assert.match(css, /"IBM Plex Sans", "Noto Sans KR"/);
 assert.match(css, /"Literata", "Iropke Batang"/);
